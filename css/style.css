@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+body interface {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 50vh;
+  border: 3px solid black;
+}
+.hid {
+  display: none;
+}
