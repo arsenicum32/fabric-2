@@ -50,53 +50,53 @@ for(var i in data){
 
 
 
-fabric.Image.fromURL('sprite.png', function(img) {  //img.scaleToWidth(100);
-    var patternSourceCanvas = new fabric.StaticCanvas();
-    patternSourceCanvas.add(img);
-
-    var pattern = new fabric.Pattern({
-      source: function() {
-        patternSourceCanvas.setDimensions({
-          width: img.getWidth(),
-          height: img.getHeight()
-        });
-        return patternSourceCanvas.getElement();
-      },
-      repeat: 'repeat'
-    });
-
-    var time = 0,
-        interval;
-    var Rect = new fabric.Rect({
-        left: 0,
-        top: 200,
-        width: 50,
-        height: 72,
-        fill: pattern
-      });
-      Rect.on({
-        'mousedown': function(){
-          interval = setInterval(function(){
-            time++;
-            pattern.offsetX = 50*time;
-            pattern.offsetY = 0;
-            if(50*time>img.width){
-              time=0;
-            }
-            canvas.renderAll();
-          }, 50);
-        },
-        'moving': function(){
-          pattern.offsetY = 70;
-        },
-        'mouseup': function(){
-          time=0;
-          pattern.offsetX = 50*time;
-          pattern.offsetY = 0;
-          canvas.renderAll();
-          clearInterval(interval);
-        }
-      })
-
-    canvas.add(Rect);
-  });
+// fabric.Image.fromURL('sprite.png', function(img) {  //img.scaleToWidth(100);
+//     var patternSourceCanvas = new fabric.StaticCanvas();
+//     patternSourceCanvas.add(img);
+//
+//     var pattern = new fabric.Pattern({
+//       source: function() {
+//         patternSourceCanvas.setDimensions({
+//           width: img.getWidth(),
+//           height: img.getHeight()
+//         });
+//         return patternSourceCanvas.getElement();
+//       },
+//       repeat: 'repeat'
+//     });
+//
+//     var time = 0,
+//         interval;
+//     var Rect = new fabric.Rect({
+//         left: 0,
+//         top: 200,
+//         width: 50,
+//         height: 72,
+//         fill: pattern
+//       });
+//       Rect.on({
+//         'mousedown': function(){
+//           interval = setInterval(function(){
+//             time++;
+//             pattern.offsetX = 50*time;
+//             pattern.offsetY = 0;
+//             if(50*time>img.width){
+//               time=0;
+//             }
+//             canvas.renderAll();
+//           }, 50);
+//         },
+//         'moving': function(){
+//           pattern.offsetY = 70;
+//         },
+//         'mouseup': function(){
+//           time=0;
+//           pattern.offsetX = 50*time;
+//           pattern.offsetY = 0;
+//           canvas.renderAll();
+//           clearInterval(interval);
+//         }
+//       })
+//
+//     canvas.add(Rect);
+//   });
