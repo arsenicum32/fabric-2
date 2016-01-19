@@ -23,7 +23,9 @@ function addItem(source, left, top, angle){
       left: left,
       top: top,
       angle: angle
-    })
+    });
+    oImg.perPixelTargetFind = true;
+    oImg.targetFindTolerance = 4;
     canvas.add(oImg);
     canvas.renderAll();
   });
@@ -31,7 +33,6 @@ function addItem(source, left, top, angle){
 
 var data = [
   {source: 'draws/ars-01.png', left: -120, top: -40, angle: 12},
-  {source: 'draws/ars-02.png'},
   {source: 'draws/ars-04.png', left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(-40, -80), angle: fabric.util.getRandomInt(-30,30)},
   {source: 'draws/ars-05.png', left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-140, -180), angle: fabric.util.getRandomInt(-30,30)},
   {source: 'draws/ars-06.png', left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)},
@@ -39,7 +40,8 @@ var data = [
   {source: 'draws/ars-08.png', left: fabric.util.getRandomInt(-140, 400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)},
   {source: 'draws/ars-09.png', left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-40, 80), angle: fabric.util.getRandomInt(-30,30)},
   {source: 'draws/ars-10.png', left: fabric.util.getRandomInt(140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)},
-  {source: 'draws/ars-11.png', left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(140, 180), angle: fabric.util.getRandomInt(-30,30)}
+  {source: 'draws/ars-11.png', left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(140, 180), angle: fabric.util.getRandomInt(-30,30)},
+  {source: 'draws/ars-02.png'}
 ];
 
 for(var i in data){

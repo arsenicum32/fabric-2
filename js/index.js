@@ -51,8 +51,6 @@ canvas.on({
   'mouse:down': function(options) {
     SHOWMENU=true;
     if (options.target) {
-      makeHandler('scaleX', options.target.scaleX*1.5, 50)(options);
-      makeHandler('scaleY', options.target.scaleY*1.5 , 50)(options);
       options.target.opacity = 0.5;
       options.target.hasControls = options.target.hasBorders = false;
       canvas.renderAll();
@@ -66,8 +64,6 @@ canvas.on({
   'mouse:up': function(options) {
     var once = true;
     if (options.target) {
-      makeHandler('scaleX', options.target.scaleX/1.5, 50)(options);
-      makeHandler('scaleY', options.target.scaleY/1.5, 50)(options);
       options.target.opacity = 1;
       canvas.renderAll();
       if(SHOWMENU && once){
@@ -109,8 +105,12 @@ canvas.on({
     //alert(e.target.foobar);
   },
   'mouse:over': function(e) {
+    makeHandler('scaleX', 0.35, 50)(e);
+    makeHandler('scaleY', 0.35, 50)(e);
   },
   'mouse:out': function(e) {
+    makeHandler('scaleX', 0.25, 50)(e);
+    makeHandler('scaleY', 0.25, 50)(e);
   },
   'touch:gesture': function() {
     alert('gesture');
