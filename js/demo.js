@@ -15,15 +15,11 @@
 //   canvas.add(new fabric[klass](options));
 // }
 
-function addItem(source, left, top, angle){
+function addItem(source, props){
   fabric.Image.fromURL(source, function(oImg) {
     oImg.scale(0.25).originX = 'center';
     oImg.originY = 'center';
-    oImg.set({
-      left: left,
-      top: top,
-      angle: angle
-    });
+    oImg.set(props);
     oImg.perPixelTargetFind = true;
     oImg.targetFindTolerance = 4;
     canvas.add(oImg);
@@ -32,25 +28,27 @@ function addItem(source, left, top, angle){
 }
 
 var data = [
-  {source: 'draws/ars-01.png', left: -120, top: -40, angle: 12},
-  {source: 'draws/ars-04.png', left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(-40, -80), angle: fabric.util.getRandomInt(-30,30)},
-  {source: 'draws/ars-05.png', left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-140, -180), angle: fabric.util.getRandomInt(-30,30)},
-  {source: 'draws/ars-06.png', left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)},
-  {source: 'draws/ars-07.png', left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(240, -280), angle: fabric.util.getRandomInt(-30,30)},
-  {source: 'draws/ars-08.png', left: fabric.util.getRandomInt(-140, 400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)},
-  {source: 'draws/ars-09.png', left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-40, 80), angle: fabric.util.getRandomInt(-30,30)},
-  {source: 'draws/ars-10.png', left: fabric.util.getRandomInt(140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)},
-  {source: 'draws/ars-11.png', left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(140, 180), angle: fabric.util.getRandomInt(-30,30)},
-  {source: 'draws/ars-02.png'}
+  {source: 'draws/ars-01.png', props: {name:"macbook",left: -120, top: -40, angle: 12}},
+  {source: 'draws/ars-04.png', props: {left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(-40, -80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-05.png', props: {left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-140, -180), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-06.png', props: {left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-07.png', props: {left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(240, -280), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-08.png', props: {left: fabric.util.getRandomInt(-140, 400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-09.png', props: {left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-40, 80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-10.png', props: {left: fabric.util.getRandomInt(140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-11.png', props: {left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(140, 180), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars2-03.png', props: {name:"uni",left: fabric.util.getRandomInt(-240, -400), top: fabric.util.getRandomInt(-300, -190), angle: fabric.util.getRandomInt(-300,300)}},
+  {source: 'draws/ars-02.png', props: {name: "I'm"}}
 ];
 
 for(var i in data){
-  addItem(data[i].source , data[i].left || 0, data[i].top || 0, data[i].angle || 0);
+  addItem(data[i].source , data[i].props || {});
 }
 
 
 
-// fabric.Image.fromURL('sprite.png', function(img) {  //img.scaleToWidth(100);
+// fabric.Image.fromURL('draws/sprite.png', function(img) {
+//     //img.scaleToHeight(100);
 //     var patternSourceCanvas = new fabric.StaticCanvas();
 //     patternSourceCanvas.add(img);
 //
@@ -68,10 +66,10 @@ for(var i in data){
 //     var time = 0,
 //         interval;
 //     var Rect = new fabric.Rect({
-//         left: 0,
+//         left: -300,
 //         top: 200,
-//         width: 50,
-//         height: 72,
+//         width: 1200,
+//         height: 1800,
 //         fill: pattern
 //       });
 //       Rect.on({

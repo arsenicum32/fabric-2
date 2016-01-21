@@ -25,3 +25,44 @@ function inCanvas(item){
     return false;
   }
 }
+
+function nextActionSeeAll(){
+  for (var n = 0; n < canvas.getObjects().length; n++) {
+    canvas.item(n).visible = true;
+    if(canvas.item(n).delifnext){
+      canvas.item(n).remove();
+    }
+  }
+}
+
+function findNear(object , mindist){  // instead of try containsPoint(e, target) click group findTarget(e, skipGroup)
+  var l = object.left;
+  var t = object.top;
+  var mind = mindist || canvas.getWidth()>canvas.getHeight()?canvas.getWidth():canvas.getHeight();
+  var remObj = null;
+  for (var n = 0; n < canvas.getObjects().length; n++) {
+    var l2 = canvas.item(n).left;
+    var t2 = canvas.item(n).top;
+    var dist = Math.sqrt( (l-l2)*(l-l2) + (t-t2)*(t-t2) );
+    if(dist<mind && canvas.item(n)!=object){
+      mind=dist;
+      remObj = canvas.item(n);
+    }
+  }
+  return [mind,remObj];
+}
+
+function action(over , near, callback){
+  if( over && near){
+    switch (over) {
+      case "macbook":
+        if(near=="I'm") callback("overmac");
+        break;
+        case "uni":
+          if(near=="I'm") callback("overuni");
+          break;
+      default:
+        void(0);
+    }
+  }
+}

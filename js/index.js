@@ -5,6 +5,17 @@ canvas.selection = false;
 canvas.defaultCursor = 'move';
 canvas.hoverCursor = 'pointer';
 
+document.addEventListener('touchstart', function(){
+    console.log('touchstart', arguments);
+    alert(arguments[0].touches[0].pageX);
+}, false);
+document.addEventListener('touchmove', function(){
+    console.log('touchmove', arguments);
+}, false);
+document.addEventListener('touchend', function(){
+    console.log('touchend', arguments);
+}, false);
+
 function retina(){
     if( window.devicePixelRatio !== 1 ){
           var c = canvas.getElement();
@@ -23,7 +34,15 @@ $(window).on('resize', function() {
   retina();
 });
 
-function makeHandler(opt , arg, duration) {
+function makeHandler(opt , arg, duration , owner) {
+  if(owner){
+    owner.originX = 'center';
+    owner.originY = 'center';
+    owner.animate(opt , arg, {
+      duration: duration || 100,
+      onChange: canvas.renderAll.bind(canvas)
+    });
+  }else{
     return function(e) {
       if (e.target) {
         e.target.originX = 'center';
@@ -35,6 +54,7 @@ function makeHandler(opt , arg, duration) {
       }
     };
   }
+}
 
 // create a rectangle object
 var offsetX = -canvas.getWidth()/2;
@@ -51,6 +71,7 @@ canvas.on({
   'mouse:down': function(options) {
     SHOWMENU=true;
     if (options.target) {
+      options.target.bringToFront();
       options.target.opacity = 0.5;
       options.target.hasControls = options.target.hasBorders = false;
       canvas.renderAll();
@@ -65,6 +86,55 @@ canvas.on({
     var once = true;
     if (options.target) {
       options.target.opacity = 1;
+      var near = findNear(options.target);
+      action(options.target.name,near[1].name, function(act){
+        if(act=='overmac' && near[0]<150){
+          nextActionSeeAll();
+          options.target.visible = false;
+          canvas.forEachObject(function(item){
+            if(item.name === "I'm"){
+              item.visible = false;
+              fabric.Image.fromURL("draws/ars2-02-sprite-2.png", function(oImg) {
+                oImg.scale(0.25).originX = 'center';
+                oImg.originY = 'center';
+                oImg.set({
+                  left: item.left,
+                  top: item.top,
+                  name: item.name,
+                  delifnext: true
+                });
+                oImg.perPixelTargetFind = true;
+                oImg.targetFindTolerance = 4;
+                canvas.add(oImg);
+                canvas.renderAll();
+              });
+            }
+          });
+        }
+        if(act=='overuni' && near[0]<150){
+          nextActionSeeAll();
+          options.target.visible = false;
+          canvas.forEachObject(function(item){
+            if(item.name === "I'm"){
+              item.visible = false;
+              fabric.Image.fromURL("draws/ars2-02-sprite.png", function(oImg) {
+                oImg.scale(0.25).originX = 'center';
+                oImg.originY = 'center';
+                oImg.set({
+                  left: item.left,
+                  top: item.top,
+                  name: item.name,
+                  delifnext: true
+                });
+                oImg.perPixelTargetFind = true;
+                oImg.targetFindTolerance = 4;
+                canvas.add(oImg);
+                canvas.renderAll();
+              });
+            }
+          });
+        }
+      });
       canvas.renderAll();
       if(SHOWMENU && once){
         once = false;
@@ -116,6 +186,7 @@ canvas.on({
     alert('gesture');
   },
   'touch:dragstart': function(options) {
+    alert('dragstart');
     if (options.target) {
       options.target.opacity = 0.5;
       canvas.renderAll();
@@ -127,11 +198,13 @@ canvas.on({
     }
   },
   'touch:dragenter': function(options) {
+    alert('dragenter');
     if (canvas.getActiveObject() == null && CAN) {
       canvas.absolutePan(new fabric.Point(offsetX - options.e.clientX + PRX, offsetY - options.e.clientY + PRY));
     }
   },
   'touch:dragend': function(options) {
+    alert('dragend');
     if (options.target) {
       options.target.opacity = 1;
       canvas.renderAll();
