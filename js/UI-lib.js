@@ -18,7 +18,7 @@
 
     функция, которая позиционирует эллемент в окне
    */
-   window.positM = function(action, type, $element) {
+   window.positM = function(action, type, $element , owner) {
     $element = $element || $("interface");
     /** @type {Array} */
     var types = [0, 0];
@@ -32,6 +32,6 @@
     }
     $element.css("top", type + types[0] + 5 + "px");
     $element.css("left", action + types[1] + 5 + "px");
-    $element.find("#logging").text(dCr(action, type));
+    $element.html(owner.name);
   }
 })();

@@ -1,20 +1,3 @@
-// for (var i = 15; i--;) {
-//   var dim = fabric.util.getRandomInt(30, 60);
-//   var klass = ['Rect', 'Triangle', 'Circle'][fabric.util.getRandomInt(0, 2)];
-//   var options = {
-//     top: fabric.util.getRandomInt(0, 600),
-//     left: fabric.util.getRandomInt(0, 600),
-//     fill: 'green'
-//   };
-//   if (klass === 'Circle') {
-//     options.radius = dim;
-//   } else {
-//     options.width = dim;
-//     options.height = dim;
-//   }
-//   canvas.add(new fabric[klass](options));
-// }
-
 function addItem(source, props){
   fabric.Image.fromURL(source, function(oImg) {
     oImg.scale(0.25).originX = 'center';
@@ -28,17 +11,17 @@ function addItem(source, props){
 }
 
 var data = [
-  {source: 'draws/ars-01.png', props: {name:"macbook",left: -120, top: -40, angle: 12}},
-  {source: 'draws/ars-04.png', props: {left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(-40, -80), angle: fabric.util.getRandomInt(-30,30)}},
-  {source: 'draws/ars-05.png', props: {left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-140, -180), angle: fabric.util.getRandomInt(-30,30)}},
-  {source: 'draws/ars-06.png', props: {left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)}},
-  {source: 'draws/ars-07.png', props: {left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(240, -280), angle: fabric.util.getRandomInt(-30,30)}},
-  {source: 'draws/ars-08.png', props: {left: fabric.util.getRandomInt(-140, 400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)}},
-  {source: 'draws/ars-09.png', props: {left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-40, 80), angle: fabric.util.getRandomInt(-30,30)}},
-  {source: 'draws/ars-10.png', props: {left: fabric.util.getRandomInt(140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)}},
-  {source: 'draws/ars-11.png', props: {left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(140, 180), angle: fabric.util.getRandomInt(-30,30)}},
-  {source: 'draws/ars2-03.png', props: {name:"uni",left: fabric.util.getRandomInt(-240, -400), top: fabric.util.getRandomInt(-300, -190), angle: fabric.util.getRandomInt(-300,300)}},
-  {source: 'draws/ars-02.png', props: {name: "I'm"}}
+  {source: 'draws/ars-01.png', props: {name:"macbook",tags:[],left: -120, top: -40, angle: 12}},
+  {source: 'draws/ars-04.png', props: {tags:['competency'],left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(-40, -80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-05.png', props: {tags:['competency'],left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-140, -180), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-06.png', props: {tags:['competency'],left: fabric.util.getRandomInt(-140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-07.png', props: {tags:['competency'],left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(240, -280), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-08.png', props: {tags:['competency'],left: fabric.util.getRandomInt(-140, 400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-09.png', props: {tags:['competency'],left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(-40, 80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-10.png', props: {tags:['competency'],left: fabric.util.getRandomInt(140, -400), top: fabric.util.getRandomInt(40, 80), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars-11.png', props: {tags:['competency'],left: fabric.util.getRandomInt(140, 400), top: fabric.util.getRandomInt(140, 180), angle: fabric.util.getRandomInt(-30,30)}},
+  {source: 'draws/ars2-03.png', props: {name:"uni",tags:[],left: fabric.util.getRandomInt(-240, -400), top: fabric.util.getRandomInt(-300, -190), angle: fabric.util.getRandomInt(-300,300)}},
+  {source: 'draws/ars-02.png', props: {name: "I'm",tags:[]}}
 ];
 
 for(var i in data){

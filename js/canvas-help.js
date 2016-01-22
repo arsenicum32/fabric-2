@@ -66,3 +66,25 @@ function action(over , near, callback){
     }
   }
 }
+
+function makeHandler(opt , arg, duration , owner) {
+  if(owner){
+    owner.originX = 'center';
+    owner.originY = 'center';
+    owner.animate(opt , arg, {
+      duration: duration || 100,
+      onChange: canvas.renderAll.bind(canvas)
+    });
+  }else{
+    return function(e) {
+      if (e.target) {
+        e.target.originX = 'center';
+        e.target.originY = 'center';
+        e.target.animate(opt , arg, {
+          duration: duration || 100,
+          onChange: canvas.renderAll.bind(canvas)
+        });
+      }
+    };
+  }
+}
