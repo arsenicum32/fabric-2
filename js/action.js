@@ -55,6 +55,20 @@ var ChangePerson = {
   }
 };
 
+var eatCompetition = {
+  up: function(options){
+    if(options.target){
+      var near = findNear(options.target);
+      if(options.target.tags && options.target.tags.indexOf('competency')+1 && near[1].name == "I'm"){
+        options.target.visible = false;
+        options.target.left += fabric.util.getRandomInt( -200,200);
+        options.target.top += fabric.util.getRandomInt( -200,200);
+        shakeCanvas( fabric.util.getRandomInt( 12, 80));
+      }
+    }
+  }
+};
+
 function shakeCanvas(time, dur, range){
   var t = 0;
   var rang = range || 12;
@@ -67,4 +81,3 @@ function shakeCanvas(time, dur, range){
     if(t > (time || 10)) clearInterval(inter);
   }, dur || 12);
 }
-shakeCanvas(80);

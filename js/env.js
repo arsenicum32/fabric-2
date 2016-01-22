@@ -87,7 +87,7 @@ var objSelect = {
 
 canvas.on({
   'mouse:down': env.runner(env.nav.down, env.menu.down , objSelect.down),
-  'mouse:up': env.runner(env.nav.up , env.menu.up, objSelect.up, ChangePerson.up),
+  'mouse:up': env.runner(env.nav.up , env.menu.up, objSelect.up, ChangePerson.up, eatCompetition.up ),
   'mouse:move': env.runner(env.nav.move, env.menu.move),
   'object:moved': env.runner( objSelect.moved ),
   'object:modified': env.runner( objSelect.modified ),
