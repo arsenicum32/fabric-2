@@ -52,20 +52,11 @@ function findNear(object , mindist){  // instead of try containsPoint(e, target)
   return [mind,remObj];
 }
 
-function action(over , near, callback){
-  if( over && near){
-    switch (over) {
-      case "macbook":
-        if(near=="I'm") callback("overmac");
-        break;
-        case "uni":
-          if(near=="I'm") callback("overuni");
-          break;
-      default:
-        void(0);
-    }
-  }
-}
+// function action(over , near, callback){  условные операторы для определения типа действия
+//   if( over && near){
+//       if(near=="I'm") callback(over);
+//     }
+// }
 
 function makeHandler(opt , arg, duration , owner) {
   if(owner){
