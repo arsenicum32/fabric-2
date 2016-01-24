@@ -30,6 +30,72 @@ var animType = [
     'easeOutBounce',
     'easeInOutBounce' ];
 
+function itemAction(act , object){
+  if(act=='uni'){
+    function animStep(i){
+      var step = [0, 100, -100 , 200 , 400 , -300 , 100];
+      i+1<step.length?i++:i=0;
+      object.flipX = step[i]>object.left;
+      object.animate('left', step[i], {
+        duration: fabric.util.getRandomInt( 3000, 5000),
+        onChange: canvas.renderAll.bind(canvas),
+        onComplete: function() {
+          animStep(i);
+        },
+        easing: fabric.util.ease[animType[fabric.util.getRandomInt( 0, animType.length)]]
+      });
+    }
+    animStep(0);
+  }else if(act=='showboard'){
+    var t = 0,
+        g = 9.8;
+    setInterval(function(){
+      var yet = false;
+      // canvas.forEachObject(function(item){
+      //   if(item!=object&&item.left>(object.left - object.getWidth()/2)&&item.left<(object.left + object.getWidth()/2)){
+      //     if(!item.top-item.getHeight()/2>object.top+object.getHeight()/2){
+      //       rect.left = item.left - item.getWidth()/2;
+      //       rect.width = item.getWidth();
+      //       rect.top = item.top - item.getHeight()/2;
+      //       rect.fill = 'white';
+      //       yet = true;
+      //       if( item.top - object.top < 20){
+      //         object.set('top' , item.top);
+      //       }
+      //     }
+      //   }
+      //   if(!yet){
+      //     rect.left = object.left;
+      //     rect.width = object.getWidth();
+      //     rect.fill = 'blue';
+      //   }
+      // });
+      // $('body').on('mousemove', function(e){
+      //   if(e.clientX > $(window).width()/2){
+      //     object.rotate +=1;
+      //   }else{
+      //     object.rotate -=1;
+      //   }
+      // });
+
+      //object.rotate = canvas.getWidth()
+
+      if(object.top+object.getHeight()/2>=env.nav.vars[4]+canvas.getHeight()){
+        object.top = env.nav.vars[4]+canvas.getHeight() - object.getHeight()/2;
+        object.rotate = 0;
+        yet = true;
+      }
+
+      !yet?t+=0.01:t=0;
+          // env.nav.vars[3] = object.left - canvas.getWidth()/2;
+          // env.nav.vars[4] = object.top - canvas.getHeight()/2;
+          // canvas.absolutePan(new fabric.Point(env.nav.vars[3], env.nav.vars[4] ));
+      object.top+=g*t*t;
+      canvas.renderAll();
+    }, 10);
+  }
+}
+
 function ChangeMe(options , sketch, act){
   nextActionSeeAll();
   options.target.visible = false;
@@ -47,22 +113,7 @@ function ChangeMe(options , sketch, act){
         });
         oImg.perPixelTargetFind = true;
         oImg.targetFindTolerance = 4;
-        if(act=='uni'){
-          function animStep(i){
-            var step = [0, 100, -100 , 200 , 400 , -300 , 100];
-            i+1<step.length?i++:i=0;
-            oImg.flipX = step[i]>oImg.left;
-            oImg.animate('left', step[i], {
-              duration: fabric.util.getRandomInt( 3000, 5000),
-              onChange: canvas.renderAll.bind(canvas),
-              onComplete: function() {
-                animStep(i);
-              },
-              easing: fabric.util.ease[animType[fabric.util.getRandomInt( 0, animType.length)]]
-            });
-          }
-          animStep(0);
-        }
+        itemAction(act, oImg);
         canvas.add(oImg);
         canvas.renderAll();
       });
