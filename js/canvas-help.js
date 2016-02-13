@@ -68,7 +68,7 @@ function makeHandler(opt , arg, duration , owner) {
     });
   }else{
     return function(e) {
-      if (e.target) {
+      if (e.target && e.target.tags && e.target.tags.indexOf('UI')==-1) {
         e.target.originX = 'center';
         e.target.originY = 'center';
         e.target.animate(opt , arg, {

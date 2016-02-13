@@ -76,12 +76,9 @@ server {
 }
 server {
         listen 80; #default_server;
-        server_name calendar.arsenicum32.ru *.calendar.arsenicum32.ru;
-        #listen [::]:80 default_server ipv6only=on;
-        root /home/ars/calendar/data ; #/usr/share/nginx/html;
+        server_name hseartanddesignschool.ru *.hseartanddesignschool.ru;
+        root /home/ars/hseartanddesignschool ;
         index index.html index.htm;
-        # Make site accessible from http://localhost/
-        #server_name localhost;
         error_page 404 /404.html;
         error_page 403 /403.html;
         error_page 500 502 503 504 /50x.html;

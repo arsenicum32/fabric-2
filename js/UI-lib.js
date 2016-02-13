@@ -32,6 +32,6 @@
     }
     $element.css("top", type + types[0] + 5 + "px");
     $element.css("left", action + types[1] + 5 + "px");
-    $element.html(owner.name);
+    //$element.html(owner.name);
   }
 })();

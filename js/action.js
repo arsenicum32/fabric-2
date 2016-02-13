@@ -64,6 +64,7 @@ function itemAction(act , object){
       //       }
       //     }
       //   }
+
       //   if(!yet){
       //     rect.left = object.left;
       //     rect.width = object.getWidth();
@@ -90,7 +91,7 @@ function itemAction(act , object){
           // env.nav.vars[3] = object.left - canvas.getWidth()/2;
           // env.nav.vars[4] = object.top - canvas.getHeight()/2;
           // canvas.absolutePan(new fabric.Point(env.nav.vars[3], env.nav.vars[4] ));
-      object.top+=g*t*t;
+      object.top+=g*t*t/2;
       canvas.renderAll();
     }, 10);
   }
