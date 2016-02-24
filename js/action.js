@@ -94,6 +94,12 @@ function itemAction(act , object){
       object.top+=g*t*t/2;
       canvas.renderAll();
     }, 10);
+  }else if(act=='gitar'){
+    changeBackground(1000,10);
+    //var tmr = 0;
+    setInterval( function(){
+      object.flipX = !object.flipX;
+    }, 100);
   }
 }
 
@@ -110,6 +116,7 @@ function ChangeMe(options , sketch, act){
           left: item.left,
           top: item.top,
           name: item.name,
+          source: sketch,
           delifnext: true
         });
         oImg.perPixelTargetFind = true;
@@ -131,11 +138,25 @@ var ChangePerson = {
         if(act=='macbook' && near[0]<150){
           ChangeMe(options , "draws/ars2-02-sprite-2.png" , act);
         }else if(act=='uni' && near[0]<150){
-          ChangeMe(options , "draws/ars2-02-sprite.png" , act);
+          if(near[1].source && near[1].source == "draws/ballsko-01.png"){ /// вот это уже ебучие модификаторы действий
+            ChangeMe(options , "draws/ballsko-all.png", act);
+          }else{
+            ChangeMe(options , "draws/ars2-02-sprite.png" , act);
+          }
         }else if(act=='gitar' && near[0]<150){
           ChangeMe(options , "draws/ars3-02.png", act);
         }else if(act=='showboard' && near[0]<150){
           ChangeMe(options , "draws/ars3-01.png", act);
+        }else if(act=='balls' && near[0]<150){
+          if(near[1].source && near[1].source == "draws/ars2-02-sprite.png"){ /// вот это уже ебучие модификаторы действий
+            ChangeMe(options , "draws/ballsko-all.png", "uni");
+          }else{
+            ChangeMe(options , "draws/ballsko-01.png", act);
+          }
+        }else if(act=='chess' && near[0]<150){
+          ChangeMe(options , "draws/ars4у-01.png", act);
+        }else if(act=='coffee' && near[0]<150){
+          ChangeMe(options , "draws/ars4у-02.png", act);
         }
       }
       // else if(!near[1].name || !act){
@@ -171,4 +192,54 @@ function shakeCanvas(time, dur, range){
     t++;
     if(t > (time || 10)) clearInterval(inter);
   }, dur || 12);
+}
+
+function changeBackground(time, dur,smooth, callback){
+  var t = 0;
+  var val = 0;
+  function genc(){
+    return [Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)];
+  }
+  function mix(a,b,per){
+    var r1 = a[0], g1 = a[1], b1 = a[2];
+    var r2 = b[0], g2 = b[1], b2 = b[2];
+    var r = r1*(1 - per) + r2*(per),
+        g = g1*(1 - per) + g2*(per),
+        b = b1*(1 - per) + b2*(per);
+    return [r,g,b];
+  }
+  var seed = [genc(),genc()];
+  var inter = setInterval(function(){
+    var normaltime = (time|| 'Infinity' ) ;
+    t > normaltime ? clearInterval(inter) : t++;
+
+    if(t>=normaltime){
+      canvas.backgroundColor = '';
+      canvas.renderAll();
+      if(callback) callback();
+    }else{
+      if(dur){
+        if( t % dur==0 ){
+          if(smooth){
+            val = 1 - val;
+            seed[val] = genc();
+          }else{
+            seed[0] = genc();
+          }
+        }
+        //console.log([seed[0], seed[1], ( t % dur /dur ) ]);
+        if(smooth){
+          var roundcol = mix( seed[0], seed[1], ( t % dur /dur , 2 ) );
+          canvas.backgroundColor = 'rgba('+roundcol[0]+','+roundcol[1]+','+roundcol[2]+',1)';
+          canvas.renderAll();
+        }else{
+          canvas.backgroundColor = 'rgba('+seed[0][0]+','+seed[0][1]+','+seed[0][2]+',1)';
+          canvas.renderAll();
+        }
+      }else{
+        canvas.backgroundColor = 'rgba('+genc()[0]+','+genc()[1]+','+genc()[2]+',1)';
+        canvas.renderAll();
+      }
+    }
+  },10);
 }
