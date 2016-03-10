@@ -137,6 +137,7 @@ var ChangePerson = {
       if(near[1].name == "I'm"){
         if(act=='macbook' && near[0]<150){
           ChangeMe(options , "draws/ars2-02-sprite-2.png" , act);
+          movearound();
         }else if(act=='uni' && near[0]<150){
           if(near[1].source && near[1].source == "draws/ballsko-01.png"){ /// вот это уже ебучие модификаторы действий
             ChangeMe(options , "draws/ballsko-all.png", act);
@@ -192,6 +193,27 @@ function shakeCanvas(time, dur, range){
     t++;
     if(t > (time || 10)) clearInterval(inter);
   }, dur || 12);
+}
+
+function movearound(delay){
+  var tm = 0;
+  var inter = setInterval(function(){
+    tm<(delay || 2)?tm+=0.01:clearInterval(inter);
+    goo(tm);
+  }, 100);
+  var goo = function(t){
+    var canvasCenter = new fabric.Point( 0 , 0 ); // center of canvas
+    var rads = 0.174532925 *t;
+      canvas.getObjects().forEach(function (obj) {
+          var objectOrigin = new fabric.Point(obj.left, obj.top);
+          var new_loc = fabric.util.rotatePoint(objectOrigin, canvasCenter, rads);
+          obj.top = new_loc.y;
+          obj.left = new_loc.x;
+          obj.angle = 10 * t; //rotate each object buy the same angle
+          canvas.renderAll();
+          //console.log(new_loc, rads);
+     });
+  }
 }
 
 function changeBackground(time, dur,smooth, callback){
