@@ -20,18 +20,37 @@
    */
    window.positM = function(action, type, $element , owner) {
     $element = $element || $("interface");
-    /** @type {Array} */
     var types = [0, 0];
     if (dCr(action, type)[1]) {
-      /** @type {number} */
       types[0] = -$element.height();
     }
     if (dCr(action, type)[0]) {
-      /** @type {number} */
       types[1] = -$element.width();
     }
     $element.css("top", type + types[0] + 5 + "px");
     $element.css("left", action + types[1] + 5 + "px");
-    //$element.html(owner.name);
+    console.log(owner);
+    if (owner.url){
+      $.get(owner.url , function(data){
+        $element.html(data);
+      });
+      $element.html("<h2>загрузка...</h2>");
+      return true;
+    }else if(owner.html){
+      $element.html(owner.html);
+      return true;
+    }else if (owner.info){
+        $element.html("<canvas id='info'></canvas>");
+        setup_info(owner.info);
+        return true;
+    }else if (owner.json){
+      $.get(owner.json , function(data){
+        $element.html("<canvas id='info'></canvas>");
+        setup_info(typeof data != typeof ''?data.toString():data);
+      });
+        return true;
+    }  else{
+      return false;
+    }
   }
 })();

@@ -16,7 +16,9 @@
           }
       canvas.renderAll();
     }
+
     retina();
+
 
   $(window).on('resize', function() {
     canvas.setHeight($(window).height());

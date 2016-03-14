@@ -1,4 +1,4 @@
-
+function setup_info(data){
   window.info = new fabric.Canvas('info');
   info.setHeight($('interface').height());
   info.setWidth($('interface').width());
@@ -24,15 +24,23 @@
   });
 
   //info.absolutePan(new fabric.Point(offsetX, offsetY));
-  var Rect = new fabric.Rect({
-          left: 10,
-          top: 20,
-          width: 120,
-          height: 180,
-          fill: 'red'
-        });
-  info.add(Rect);
-  info.renderAll();
+
+  if(data){
+    info.loadFromJSON(json, canvas.renderAll.bind(canvas), function(o, object) {
+      //fabric.log(o, object);
+    });
+  }else{
+    var Rect = new fabric.Rect({
+            left: 10,
+            top: 20,
+            width: 120,
+            height: 180,
+            fill: 'red'
+          });
+    info.add(Rect);
+    info.renderAll();
+  }
+
   info.on({'mouse:down': function(e){
       if(e.target){
         var color = ['blue','red','yellow','hotpink'][Math.floor(Math.random()*4)];
@@ -45,3 +53,4 @@
         info.renderAll();
       }
     }});
+}

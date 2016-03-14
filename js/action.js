@@ -95,7 +95,12 @@ function itemAction(act , object){
       canvas.renderAll();
     }, 10);
   }else if(act=='gitar'){
-    changeBackground(1000,10);
+    if(is.not.chrome()){
+      canvas.add(new fabric.Text("Попробуйте открыть в хроме!!!", {
+        fontFamily: 'Gill Sans'
+      }));
+      changeBackground(1000,10);
+    }
     //var tmr = 0;
     setInterval( function(){
       object.flipX = !object.flipX;
@@ -135,6 +140,7 @@ var ChangePerson = {
       var near = findNear(options.target);
       var act = options.target.name;
       if(near[1].name == "I'm"){
+        if(near[0]<150) PlaySound(act); // внимание!!!! функция звука!!!!!!!!!!!
         if(act=='macbook' && near[0]<150){
           ChangeMe(options , "draws/ars2-02-sprite-2.png" , act);
           movearound();
@@ -195,7 +201,7 @@ function shakeCanvas(time, dur, range){
   }, dur || 12);
 }
 
-function movearound(delay){
+function movearound(delay){ /// охуенная штука - всё летает по кругу
   var tm = 0;
   var inter = setInterval(function(){
     tm<(delay || 2)?tm+=0.01:clearInterval(inter);
@@ -216,7 +222,7 @@ function movearound(delay){
   }
 }
 
-function changeBackground(time, dur,smooth, callback){
+function changeBackground(time, dur,smooth, callback){ // ну тут понятно - меняется фон
   var t = 0;
   var val = 0;
   function genc(){

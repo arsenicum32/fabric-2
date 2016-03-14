@@ -49,11 +49,10 @@ var env = {
     },
     up: function(options){
       var once = true;
-      if(options.target){
-        if(env.menu.SHOWMENU && once){
+      if(options.target){ // пиздато законсперированная фукция, которая проверяет если ли что парсить из меню и открывает это... 
+        if(env.menu.SHOWMENU && once && positM(options.e.clientX,options.e.clientY, $("interface") , options.target) ){
           once = false;
           $('interface').toggleClass('hid');
-          positM(options.e.clientX,options.e.clientY, $("interface") , options.target);
         }
       }
       if(env.menu.SHOWMENU && !$('interface').hasClass('hid') && once){
@@ -107,7 +106,8 @@ canvas.on({
   'touch:dragend': env.runner(),
   'touch:orientation': env.runner(),
   'touch:shake': env.runner(),
-  'touch:longpress': env.runner()
+  'touch:longpress': env.runner(),
+  'drop': env.runner(function(){ alert('drop') })
 });
 
 //fabric.Object.prototype.transparentCorners = false;
