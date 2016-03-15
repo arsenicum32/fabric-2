@@ -140,7 +140,10 @@ var ChangePerson = {
       var near = findNear(options.target);
       var act = options.target.name;
       if(near[1].name == "I'm"){
-        if(near[0]<150) PlaySound(act); // внимание!!!! функция звука!!!!!!!!!!!
+        if(near[0]<150){
+          PlaySound(act); // внимание!!!! функция звука!!!!!!!!!!!
+          writesite.run(act); // функция писания сайта
+        }
         if(act=='macbook' && near[0]<150){
           ChangeMe(options , "draws/ars2-02-sprite-2.png" , act);
           movearound();
