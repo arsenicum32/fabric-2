@@ -34,6 +34,11 @@
       if(inter) clearInterval(inter);
       timer = 0;
       runtext = '';
+    },
+    clear: function(){
+      timer = 0;
+      runtext = '';
+      $('#maccode').html('');
     }
   }
 })();

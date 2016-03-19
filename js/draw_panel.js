@@ -1,4 +1,4 @@
-(function(){
+function drawpaneljs(){
   if(is.not.chrome()){
     var Rect = new fabric.Rect({
             left: offsetX,
@@ -20,4 +20,4 @@
     canvas.add(button);
     canvas.renderAll();
   }
-})();
+}

@@ -1,0 +1,5 @@
+node_modules/
+js/
+/gulpfile.js
+/nginx-setup.js
+/dev.html

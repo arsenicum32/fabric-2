@@ -1,4 +1,4 @@
-
+function setup(){
   window.canvas = new fabric.Canvas('c');
   canvas.setHeight($(window).height());
   canvas.setWidth($(window).width());
@@ -26,6 +26,7 @@
     retina();
   });
   // create a rectangle object
-  var offsetX = -canvas.getWidth()/2;
-  var offsetY = -canvas.getHeight()/2;
+  window.offsetX = -canvas.getWidth()/2;
+  window.offsetY = -canvas.getHeight()/2;
   canvas.absolutePan(new fabric.Point(offsetX, offsetY));
+}
