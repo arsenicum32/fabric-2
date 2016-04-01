@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  overflow: hidden;
 }
 body interface {
   background: white;
@@ -12,4 +13,15 @@ body interface {
 }
 .hid {
   display: none;
+}
+#codeblock{
+  width: 30%;
+  height: 30%;
+  font-size: 0.8em;
+  resize: none;
+  overflow-y: scroll;
+  border: none;
+  position: absolute;
+  top: 10%;
+  right: 10%;
 }

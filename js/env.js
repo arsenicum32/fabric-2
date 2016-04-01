@@ -19,11 +19,12 @@ function envjs(){
       move: function(options){
         if (canvas.getActiveObject() == null && env.nav.vars[0]) {
           ////////// ограничитель бесконечного перемещения
-          if( Math.abs(env.nav.vars[3]) > $(window).width()){
-            env.nav.vars[3] = -env.nav.vars[3] + env.nav.vars[3]>0?100:-100;
-          }
-          if( Math.abs(env.nav.vars[4]) > $(window).height()){
-            env.nav.vars[4] = -env.nav.vars[4] + env.nav.vars[4]>0?100:-100;
+          if( Math.abs(env.nav.vars[3]) > $(window).width() || Math.abs(env.nav.vars[4]) > $(window).height()){
+            // здесь какая функция, которая создаёт стрелку возврата в старт
+            env.nav.vars[3] = -canvas.getWidth()/2;
+            env.nav.vars[4] = -canvas.getHeight()/2;
+          }else{
+            // здесь функция, которая разрушает эту самую стрелку
           }
           ////////////////////////////
           canvas.absolutePan(new fabric.Point(env.nav.vars[3] - options.e.clientX + env.nav.vars[1], env.nav.vars[4] - options.e.clientY + env.nav.vars[2]));
