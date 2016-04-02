@@ -147,7 +147,7 @@ function actionjs(){
           }
           if(act=='macbook' && near[0]<150){
             ChangeMe(options , "draws/ars2-02-sprite-2.png" , act);
-            movearound();
+            movearound(4);
           }else if(act=='uni' && near[0]<150){
             if(near[1].source && near[1].source == "draws/ballsko-01.png"){ /// вот это уже ебучие модификаторы действий
               ChangeMe(options , "draws/ballsko-all.png", act);

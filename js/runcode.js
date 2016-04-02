@@ -9,7 +9,6 @@
       if(act == 'macbook'){
         if(!yet){
           this.setcopyurl('/pageme.html', function() {
-            console.log(copy);
             writesite.play();
             yet = true;
           });
