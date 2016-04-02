@@ -30,6 +30,7 @@
       })
     },
     play: function(){
+      $('#console').css('visibility', 'visible');
       inter = setInterval(function(){
         timer<copy.length?timer++:clearInterval(inter);
         runtext = copy.substring(0,timer);
@@ -40,9 +41,11 @@
       }, 12);
     },
     pause: function(){
+      $('#console').css('visibility', 'hidden');
       if(inter) clearInterval(inter);
     },
     stop: function(){
+      $('#console').css('visibility', 'hidden');
       if(inter) clearInterval(inter);
       timer = 0;
       runtext = '';

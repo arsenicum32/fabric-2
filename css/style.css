@@ -14,14 +14,56 @@ body interface {
 .hid {
   display: none;
 }
-#codeblock{
-  width: 30%;
-  height: 30%;
-  font-size: 0.8em;
-  resize: none;
-  overflow-y: scroll;
-  border: none;
+
+#console {
+  visibility: hidden;
   position: absolute;
-  top: 10%;
-  right: 10%;
+  top: 80vh;
+  left: 60%;
+  width: 300px;
+  height: 200px;
+  margin: 0;
+  background-color: #343434;
+  border-color: #CABFA6;
+  border-style: solid;
+  border-top-width: 6px;
+  border-left-width: 6px;
+  border-right-width: 6px;
+  border-bottom-width: 22px;
+  border-radius: 10px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  box-shadow: inset 0 0 0px 7px #928771, inset 0 0 0px 12px rgba(0, 0, 0, 0.2);
+}
+#console textarea {
+  font-family: Gill Sans;
+  color: #C0C0C0;
+  border: none;
+  width: 80%;
+  resize: none;
+  position: relative;
+  color: #0EF923;
+  left: 20px;
+  background: none;
+  height: 80%;
+  font-size: 14px;
+  display: block;
+  overflow-y: scroll;
+  margin: 0;
+}
+#console textarea:nth-child(1) {
+  margin-top: 25px;
+}
+#console textarea.breakline {
+  padding-bottom: 12px;
+}
+#console::after {
+  position: absolute;
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background-color: #343434;
+  right: 15px;
+  bottom: -15px;
 }
