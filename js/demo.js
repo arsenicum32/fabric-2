@@ -23,6 +23,7 @@ function demojs(){
     {
       source: 'draws/ars-01.png',
       props: {
+        url: domain.run('macbook'),
         name:"macbook",tags:[],left: -120, top: -40, angle: 12
       }
     },{
@@ -82,36 +83,44 @@ function demojs(){
     },{
       source: 'draws/ars3-03.png',
       props: {
-        name:"showboard",tags:[],left: gi(10, 10), top: gi(240, 280), angle: gi(-30,30)
+        name:"showboard",
+        tags:[],
+        url: domain.run('showboard'),
+        left: gi(10, 10), top: gi(240, 280), angle: gi(-30,30)
       }
     },{
       source: 'draws/ars3-04.png',
       props: {
         name:"gitar",
         tags:[],
-        url: domain.get('test'),
+        url: domain.run('gitar'),
         left: gi(400, 600),
         top: gi(0, 80), angle: gi(-360,360)
       }
     },{
       source: 'draws/ars2-03.png',
       props: {
-        name:"uni",tags:[],left: gi(-240, -400),
+        name:"uni",
+        url: domain.run('uni'),
+        tags:[],left: gi(-240, -400),
         top: gi(-300, -190), angle: gi(-300,300)
       }
     },{
       source: 'draws/ars-02.png',
       props: {
+        url: domain.run('Im'),
         name: "I'm",tags:[]
       }
     },{
       source: 'draws/chess.png',
       props: {
+        url: domain.run('chess'),
         name: "chess",tags:[], left: gi(250, 300), top: gi(0, 80), angle: gi(-30,30)
       }
     },{
       source: 'draws/ars4у-04.png',
       props: {
+        url: domain.run('coffee'),
         name: "coffee",tags:[],
         left: gi(250, 300), top: gi(250, 280), angle: gi(-12,12)
       }

@@ -13,7 +13,8 @@ function drawpaneljs(){
       fontFamily: 'Gill Sans',
       fontSize: 20,
       textBackgroundColor: 'black',
-      fill: '0AFFED'
+      fill: '0AFFED',
+      url: domain.run('button')
     });
 
     canvas.add(Rect);
