@@ -34,7 +34,7 @@
       $.get(owner.url , function(data){
         $element.html(data);
       });
-      $element.html("<h2>загрузка...</h2>");
+      $element.html("<div class='loading'></div>");
       return true;
     }else if(owner.html){
       $element.html(owner.html);
