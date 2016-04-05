@@ -1,0 +1,16 @@
+#outerdiv {
+  width: 517px;
+  height: 515px;
+  overflow: hidden;
+  position: absolute;
+  -webkit-transform: scale(0.5) translate(-250px, -250px);
+          transform: scale(0.5) translate(-250px, -250px);
+}
+#inneriframe {
+  position: absolute;
+  top: -60px;
+  left: -210px;
+  width: 900px;
+  height: 900px;
+  border: none;
+}

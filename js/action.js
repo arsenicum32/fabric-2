@@ -144,6 +144,11 @@ function actionjs(){
           if(near[0]<150){
             PlaySound(act); // внимание!!!! функция звука!!!!!!!!!!!
             writesite.run(act); // функция писания сайта
+            if(act=='chess'){
+              chess.addChess();
+            }else{
+              chess.removeChess();
+            }
           }
           if(act=='macbook' && near[0]<150){
             ChangeMe(options , "draws/ars2-02-sprite-2.png" , act);
