@@ -8,7 +8,7 @@
     run: function(act){
       if(act == 'macbook'){
         if(!yet){
-          this.setcopyurl('/pageme.html', function() {
+          this.setcopyurl('/public/pageme.html', function() {
             writesite.play();
             yet = true;
           });
